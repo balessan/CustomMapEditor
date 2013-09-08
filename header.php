@@ -1,4 +1,4 @@
-<?php $include_path = "/MapEditor/"; ?>
+<?php $include_path = "./"; ?>
 
 <!DOCTYPE html>
 <html>

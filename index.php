@@ -16,33 +16,12 @@
 	  // always return true if you save the contact data ok or false if it fails
 	  $response['status'] = $point->Save() ? 'success' : 'error';
 	  $response['message'] = $response['status']
-		  ? 'Votre nouveau point a bien ete sauvegarde!'
-		  : 'Il y a eu un probleme lors de l\'ajout du point sur la carte.';
+		  ? 'Votre nouveau point a bien été sauvegardé!'
+		  : 'Il y a eu un problème lors de l\'ajout du point sur la carte.';
 
 	  header('Content-type: application/json');
 	  echo json_encode($response);
 	  exit;
-	}
-	
-	function savePoint($data)
-	{
-		$success = false;
-		try {
-			$pointFile = "./osm_points.txt";
-			$pointFileWritingLink = fopen($pointFile, 'a') or die('Cant\' open file');
-			
-			$newPoint = "\n" . $data["latitude"] . "\t" . $data["longitude"] . "\t" . $data["title"] . "\t" . $data["description"] . "\t./includes/img/osm_pois_icon.png\t24,24\t0,-24";
-			
-			fwrite($pointFileWritingLink, $newPoint);
-			fclose($pointFileWritingLink);
-			
-			$success = true;
-		} catch (Exception $e) {
-			$success = $false;	
-			die('File was not written properly:' + $e->getMessage());
-		}
-		
-		return $success;
 	}
 ?>
 
@@ -216,7 +195,7 @@
 			$form = $(this).closest('form');
 			
 			$.ajax({
-				url: './map.php',
+				url: './index.php',
 				type: 'POST',
 				data: $('#add_point_information').serialize(),
 				dataType: 'json',

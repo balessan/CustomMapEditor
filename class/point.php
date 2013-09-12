@@ -49,14 +49,30 @@ class Point
 
 	public function SetDescription($description)
 	{
-		if (isset($title) && $this->_title != $title)
+		if (isset($description) && $this->_description != $description)
 		{
-			$this->_title = $title;
+			$this->_description = $description;
 		}
 	}
 
-	public function Save($data)
+	public function Save()
 	{
+		$success = false;
+		try {
+			$pointFile = "./osm_points.txt";
+			$pointFileWritingLink = fopen($pointFile, 'a') or die('Cant\' open file');
+			
+			$newPoint = "\n" . $this->_latitude . "\t" . $this->_longitude . "\t" . $this->_title . "\t" . $this->_description . "\t./includes/img/osm_pois_icon.png\t24,24\t0,-24";
+			
+			fwrite($pointFileWritingLink, $newPoint);
+			fclose($pointFileWritingLink);
+			
+			$success = true;
+		} catch (Exception $e) {
+			$success = $false;	
+			die('File was not written properly:' + $e->getMessage());
+		}
 		
+		return $success;
 	}
 }

@@ -9,15 +9,12 @@
 	  // then used json_decode and json_decode to read/save your json in
 	  // saveContact()
 	  
-	  $data = array(
-		'title'       => convertAsSafeString($_POST['point-title']),
-		'latitude'    => convertAsSafeString($_POST['latitude']),
-		'longitude'   => convertAsSafeString($_POST['longitude']),
-		'description' => convertAsSafeString($_POST['description'])
-	  );
+	  $data = Utility::ReturnSafeArrayFromPost($_POST);
+
+	  $point = new Point($data);
 
 	  // always return true if you save the contact data ok or false if it fails
-	  $response['status'] = savePoint($data) ? 'success' : 'error';
+	  $response['status'] = $point->Save() ? 'success' : 'error';
 	  $response['message'] = $response['status']
 		  ? 'Votre nouveau point a bien ete sauvegarde!'
 		  : 'Il y a eu un probleme lors de l\'ajout du point sur la carte.';
@@ -27,18 +24,6 @@
 	  exit;
 	}
 	
-	function convertAsSafeString($string)
-	{
-		$result = null;
-		
-		if (isset($string))
-		{
-			$result = htmlspecialchars($string);
-		}
-
-		return $result;
-	}
-
 	function savePoint($data)
 	{
 		$success = false;
@@ -213,7 +198,7 @@
 		<form id="add_point_information">
 			<fieldset>
 				<legend>Map information</legend>
-				<label>Point title</label><input type="textfield" name="point-title" id="point-title" /><br>
+				<label>Point title</label><input type="textfield" name="title" id="title" /><br>
 				<label>Latitude</label><input type="number" name="latitude"id="latitude" /><br>
 				<label>Longitude</label><input type="number" name="longitude" id="longitude" /><br>
 				<label>Description</label><input name="description" id="description" type="textarea" class="ckeditor" />

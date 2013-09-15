@@ -15,7 +15,7 @@ class Utility
 		{
 			$data[$key] = Utility::ConvertAsSafeString($value);
 		}
-		echo serialize($data);	
+		
 		return $data;
 	}
 

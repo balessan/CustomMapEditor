@@ -8,6 +8,7 @@
 **/
 class Point 
 {
+	private $_file = __DIR__ . "/osm_points.txt";
 	private $_latitude;
 	private $_longitude;
 	private $_title;
@@ -52,14 +53,30 @@ class Point
 			$this->_description = $description;
 		}
 	}
+	
+	public function SetFile($file)
+	{
+		if (isset($file) && $this->_file != $file)
+		{
+			$this->_file = $file;
+		}
+	}
+
 
 	public function Save()
 	{
 		$success = false;
 		try {
-			$pointFile = __DIR__ . "/osm_points.txt";
-			echo $pointFile;
-			$pointFileWritingLink = fopen($pointFile, 'a') or die('Cant\' open file');
+			if (!file_exists($this->_file))
+			{
+				$pointFileFirstWriting = fopen($this->_file, 'w') or die('Cannot open file :' . $this->_file);
+				$header = "lat\nlon\ntitle\ndescription\nicon\niconSize\niconOffset";
+				fwrite($pointFileFirstWriting, $header);
+ 				
+				fclose($pointFileFirstWriting);
+			}
+
+			$pointFileWritingLink = fopen($this->_file, 'a') or die('Cant\' open file');
 			
 			$newPoint = "\n" . $this->_latitude . "\t" . $this->_longitude . "\t" . $this->_title . "\t" . $this->_description . "\t./includes/img/osm_pois_icon.png\t24,24\t0,-24";
 			

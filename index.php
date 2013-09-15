@@ -59,7 +59,7 @@
 		var pois_layer = new OpenLayers.Layer.Vector("Custom meeting points", {
                     strategies: [refreshStrategyControl, new OpenLayers.Strategy.BBOX({resFactor: 1.1})],
                     protocol: new OpenLayers.Protocol.HTTP({
-                        url: "osm_points.txt",
+                        url: "./class/osm_points.txt",
                         format: new OpenLayers.Format.Text()
                     })
                 });
@@ -68,13 +68,15 @@
 		
 		map.addLayer(pois_layer);
 		
-		var control;
-		control = new OpenLayers.Control.Click();
-		control.key = "single";
-		map.addControl(control);
+		//Instructions used to add a control click on the map
+		//var control;
+		//control = new OpenLayers.Control.Click();
+		//control.key = "single";
+		//map.addControl(control);
+		//control.activate();
+
 		map.addControl(new OpenLayers.Control.LayerSwitcher());
 		map.addControl(new OpenLayers.Control.MousePosition());		
-		control.activate();
 		
 		var targetProj = new OpenLayers.Projection("EPSG:900913");
 		var sourceProj = new OpenLayers.Projection("EPSG:4326");
@@ -154,6 +156,7 @@
 				<label>Latitude</label><input type="number" name="latitude"id="latitude" /><br>
 				<label>Longitude</label><input type="number" name="longitude" id="longitude" /><br>
 				<label>Description</label><input name="description" id="description" type="textarea" class="ckeditor" />
+				<label>Season</label>
 				<input type="submit" id="add_point" class="button"/>
 			</fieldset>
 		</form>

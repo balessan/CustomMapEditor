@@ -20,7 +20,6 @@
 		  ? 'Votre nouveau point a bien été sauvegardé!'
 		  : 'Il y a eu un problème lors de l\'ajout du point sur la carte.';
 
-	  echo 'HERE';	  
 	  header('Content-type: application/json');
 	  echo json_encode($response);
 	  exit;

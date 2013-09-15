@@ -3,3 +3,7 @@ lat	lon	title	description	icon	iconSize	iconOffset
 46.000000	2.000000	Meeting 2	Second meeting in the list<br><br><br><i>Click again to close</i>	./includes/img/osm_pois_icon.png	24,24	0,-24	
 
 49	2.5	Blabla	This is a test	./includes/img/osm_pois_icon.png	24,24	0,-24
+49.000	1.5	Test 4	ZIHZIDHZODHOHDOZD	./includes/img/osm_pois_icon.png	24,24	0,-24
+49.000	1.5	Test 4	ZIHZIDHZODHOHDOZD	./includes/img/osm_pois_icon.png	24,24	0,-24
+46.000	1.5	Test 4	ZIHZIDHZODHOHDOZD	./includes/img/osm_pois_icon.png	24,24	0,-24
+44.000	1.5	Test 4	ZIHZIDHZODHOHDOZD	./includes/img/osm_pois_icon.png	24,24	0,-24

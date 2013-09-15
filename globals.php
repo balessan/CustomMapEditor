@@ -9,6 +9,7 @@
 
 	function classLoader($class)
 	{
+		$include_path = '/CustomMapEditor/';
 		try {
 			$filename = strtolower($class) . '.php';
 			
@@ -16,7 +17,7 @@
 			if (!strncmp("Model_", $class, strlen("Model_")))
 				return true;
 	
-			$file =  dirname(__DIR__) . '/class/' . $filename;
+			$file =  dirname(__DIR__) . $include_path . '/class/' . $filename;
 			
 			if (file_exists($file))
 			{

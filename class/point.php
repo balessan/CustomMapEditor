@@ -21,8 +21,6 @@ class Point
 		$this->SetDescription($data['description']);
 	}
 
-	public function __construct() {}
-
 	public function SetLatitude($latitude)
 	{
 		if (isset($latitude) && $this->_latitude != $latitude)
@@ -59,7 +57,8 @@ class Point
 	{
 		$success = false;
 		try {
-			$pointFile = "./osm_points.txt";
+			$pointFile = __DIR__ . "/osm_points.txt";
+			echo $pointFile;
 			$pointFileWritingLink = fopen($pointFile, 'a') or die('Cant\' open file');
 			
 			$newPoint = "\n" . $this->_latitude . "\t" . $this->_longitude . "\t" . $this->_title . "\t" . $this->_description . "\t./includes/img/osm_pois_icon.png\t24,24\t0,-24";
@@ -76,3 +75,5 @@ class Point
 		return $success;
 	}
 }
+
+?>

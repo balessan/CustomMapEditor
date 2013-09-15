@@ -11,11 +11,11 @@ class Utility
 	{
 		$data = array();
 		
-		foreach($post as $key)
+		foreach($post as $key => $value)
 		{
-			$data[$key] = Utility::ConvertAsSafeString($post[$key]);
+			$data[$key] = Utility::ConvertAsSafeString($value);
 		}
-		
+		echo serialize($data);	
 		return $data;
 	}
 
